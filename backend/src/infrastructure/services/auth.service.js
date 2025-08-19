@@ -7,19 +7,51 @@ module.exports = {
   actions: {
     register: {
       rest: { method: "POST", path: "/register" },
-      params: { username: "string", password: "string" },
+      params: { username: "string", password: "string", email: "string" },
       async handler(ctx) {
-        const useCase = new RegisterUserUseCase();
-        const user = await useCase.execute(ctx.params);
-        return user;
+        console.log("[Auth.service] Registration attempt:", {
+          username: ctx.params.username,
+          email: ctx.params.email,
+        });
+
+        try {
+          const useCase = new RegisterUserUseCase();
+          const user = await useCase.execute(ctx.params);
+
+          console.log("[Auth.service] User registered successfully:", {
+            id: user._id,
+            username: user.username,
+            email: user.email,
+          });
+
+          return user;
+        } catch (error) {
+          console.error("[Auth.service] Registration failed:", error);
+          throw error;
+        }
       }
     },
+
     login: {
       rest: { method: "POST", path: "/login" },
       params: { email: "string", password: "string" },
       async handler(ctx) {
-        const useCase = new LoginUserUseCase();
-        return useCase.execute(ctx.params);
+        console.log("🔐 [Auth.service] Login attempt:", { email: ctx.params.email });
+
+        try {
+          const useCase = new LoginUserUseCase();
+          const result = await useCase.execute(ctx.params);
+
+          console.log("[Auth.service] Login successful:", {
+            email: ctx.params.email,
+            token: result.token ? "Token generated ✔️" : "No token",
+          });
+
+          return result;
+        } catch (error) {
+          console.error("[Auth.service] Login failed:", error);
+          throw error;
+        }
       }
     }
   }
