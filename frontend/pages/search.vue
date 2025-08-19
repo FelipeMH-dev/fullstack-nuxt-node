@@ -2,6 +2,7 @@
   <Layout>
     <div class="search-page">
       <h1>Buscador de Libros</h1>
+
       <div class="search-input-wrapper" ref="wrapperRef">
         <input v-model="searchText" placeholder="Escribe el nombre de un libro para continuar"
           @focus="showAutocomplete = true" @input="filterAutocomplete">
@@ -31,11 +32,13 @@
       <!-- Modal -->
       <div v-if="selectedBook" class="modal-backdrop" @click.self="closeModal">
         <div class="modal">
+          <!-- Botón cerrar -->
+          <button class="close-button" @click="closeModal">&times;</button>
+
           <h2>{{ selectedBook.title }}</h2>
           <p><strong>Autor:</strong> {{ selectedBook.author }}</p>
           <p><strong>Año:</strong> {{ selectedBook.year }}</p>
-          <img :src="selectedBook.coverBase64 ? selectedBook.coverBase64 : '/images/not-found-book.png'" alt=""
-            width="150" height="225">
+          <img :src="selectedBook.coverBase64 ? selectedBook.coverBase64 : '/images/not-found-book.png'" alt="">
 
           <textarea v-model="review" placeholder="Escribe tu review (máx. 500 caracteres)" maxlength="500"></textarea>
 
@@ -46,9 +49,14 @@
             </label>
           </div>
 
+          <!-- Botón guardar con loading -->
           <button :disabled="rating === null || isSaving" class="save-button" @click="saveBook">
-            Guardar
+            <span v-if="isSaving" class="loading">
+              <span class="spinner"></span> Guardando...
+            </span>
+            <span v-else>Guardar</span>
           </button>
+
           <p v-if="successMessage" class="success">{{ successMessage }}</p>
         </div>
       </div>
@@ -67,6 +75,7 @@ const searchText = ref('')
 const books = ref<Book[]>([])
 const searched = ref(false)
 const isSaving = ref(false)
+
 // LocalStorage para últimas búsquedas
 const lastSearches = ref<string[]>([])
 const showAutocomplete = ref(false)
@@ -156,7 +165,7 @@ const saveBook = async () => {
 
   await addBook({
     ...selectedBook.value,
-    review: review.value, 
+    review: review.value,
     rating: rating.value
   })
 
