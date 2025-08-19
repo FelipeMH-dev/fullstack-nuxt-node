@@ -1,5 +1,5 @@
 
 ## 💻 Test Fullstack
 
-Para iniciar  leer el README.MD de cada carpeta.
+To start, read the README.MD for each folder.
 

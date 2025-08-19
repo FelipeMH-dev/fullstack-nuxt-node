@@ -1,5 +1,5 @@
 
-## Agregar .env con las siguientes variables
+## Add .env with the following variables
 
 - NUXT_PUBLIC_API_BASE=http://localhost:4000/api
 - API_SECRET=your_api_secret_key
