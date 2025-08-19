@@ -16,20 +16,20 @@
         </label>
       </div>
 
-      <!-- Lista de libros -->
       <ul class="books-list">
         <li v-for="book in filteredBooks" :key="book.id">
-          <img
-            :src="book.coverBase64 ? book.coverBase64 : '/images/not-found-book.png'"
-            alt="Portada del libro"
-            width="100"
-            height="150"
-          >
-          
-           <h3>{{ book.rating ?? 0 }} ⭐</h3>
-           <h3> {{ book.title }} </h3>
+          <img :src="book.coverBase64 ? book.coverBase64 : '/images/not-found-book.png'" alt="Portada del libro"
+            width="100" height="150">
+
+          <!-- Estrellas dinámicas -->
+          <div class="book-rating">
+            <span v-for="n in 5" :key="n" :class="{ filled: n <= (book.rating ?? 0) }">
+              ★
+            </span>
+          </div>
+
+          <h3>{{ book.title }}</h3>
           <h3>Autor: {{ book.author }}</h3>
-         
           <p>{{ book.review }}</p>
           <div class="buttons">
             <button @click="openModal(book)">Editar</button>
@@ -47,35 +47,19 @@
           <h2>{{ selectedBook.title }}</h2>
           <p><strong>Autor:</strong> {{ selectedBook.author }}</p>
           <p><strong>Año:</strong> {{ selectedBook.year }}</p>
-          <img
-            :src="selectedBook.coverBase64 ? selectedBook.coverBase64 : '/images/not-found-book.png'"
-            alt="Portada del libro"
-            width="150"
-            height="225"
-          >
+          <img :src="selectedBook.coverBase64 ? selectedBook.coverBase64 : '/images/not-found-book.png'"
+            alt="Portada del libro" width="150" height="225">
 
-          <textarea
-            v-model="review"
-            placeholder="Escribe tu review (máx. 500 caracteres)"
-            maxlength="500"
-          ></textarea>
+          <textarea v-model="review" placeholder="Escribe tu review (máx. 500 caracteres)" maxlength="500"></textarea>
 
           <div class="rating">
-            <label
-              v-for="n in 5"
-              :key="n"
-              :class="{ selected: n <= (rating ?? 0) }"
-            >
+            <label v-for="n in 5" :key="n" :class="{ selected: n <= (rating ?? 0) }">
               <input v-model="rating" type="radio" :value="n">
               <span>★</span>
             </label>
           </div>
 
-          <button
-            :disabled="rating === null || isSaving"
-            class="save-button"
-            @click="saveBook"
-          >
+          <button :disabled="rating === null || isSaving" class="save-button" @click="saveBook">
             Guardar
           </button>
           <p v-if="successMessage" class="success">{{ successMessage }}</p>
