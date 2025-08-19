@@ -25,8 +25,11 @@
             width="100"
             height="150"
           >
-          <h3>{{ book.author }}</h3>
-          <h3>{{ book.title }} ({{ book.rating ?? 0 }} ⭐)</h3>
+          
+           <h3>{{ book.rating ?? 0 }} ⭐</h3>
+           <h3> {{ book.title }} </h3>
+          <h3>Autor: {{ book.author }}</h3>
+         
           <p>{{ book.review }}</p>
           <div class="buttons">
             <button @click="openModal(book)">Editar</button>
