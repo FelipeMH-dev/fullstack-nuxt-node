@@ -7,7 +7,7 @@ export const useBooksStore = defineStore('books', {
   state: () => ({
     books: [] as Book[],
     selectedBook: null as Book | null,
-    booksService: null as BooksService | null, // <-- instanciamos aquí
+    booksService: null as BooksService | null,
   }),
 
   actions: {

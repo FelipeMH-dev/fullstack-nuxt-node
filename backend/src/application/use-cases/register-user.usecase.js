@@ -14,30 +14,27 @@ class RegisterUserUseCase {
    * @param {Object} userData - { username, email, password }
    */
   async execute(userData) {
-    // 1️⃣ Crear DTO
     const dto = new RegisterDTO(userData);
 
-    // 2️⃣ Validar DTO
     UserValidator.validateRegister(dto);
 
-    // 3️⃣ Verificar que el email no exista
     const existingUser = await this.userRepo.findByEmail(dto.email);
     if (existingUser) {
       throw new Error("El email ya está registrado");
     }
 
-    // 4️⃣ Hashear la contraseña
+    const existingUsername = await this.userRepo.findByUsername(dto.username);
+    if (existingUsername) throw new Error("El username ya está registrado");
+
     const hashedPassword = await bcrypt.hash(dto.password, this.SALT_ROUNDS);
     dto.password = hashedPassword;
 
-    // 5️⃣ Guardar usuario en repositorio
     const newUser = await this.userRepo.createUser(dto);
 
-    // 6️⃣ Devolver información mínima del usuario (sin contraseña)
     return {
       id: newUser._id,
       username: newUser.username,
-      email: newUser.email
+      email: newUser.email,
     };
   }
 }

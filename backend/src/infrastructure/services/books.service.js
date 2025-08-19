@@ -1,6 +1,5 @@
 const { Service } = require("moleculer");
 const SearchBooksUseCase = require("../../application/use-cases/search-books.usecase");
-const LastSearchUseCase = require("../../application/use-cases/last-search.usecase");
 const AddBookUseCase = require("../../application/use-cases/add-book.usecase");
 const UpdateBookUseCase = require("../../application/use-cases/update-book.usecase");
 const DeleteBookUseCase = require("../../application/use-cases/delete-book.usecase");
@@ -19,14 +18,6 @@ module.exports = {
         const user = await authMiddleware(ctx.meta.headers);
         const useCase = new SearchBooksUseCase(this.broker);
         return useCase.execute(user.id, ctx.params.q, user.token);
-      }
-    },
-    lastSearch: {
-      rest: { method: "GET", path: "/last-search" },
-      async handler(ctx) {
-        const user = await authMiddleware(ctx.meta.headers);
-        const useCase = new LastSearchUseCase();
-        return useCase.execute(user.id);
       }
     },
    add: {

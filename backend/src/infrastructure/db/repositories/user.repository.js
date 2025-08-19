@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 class UserRepository {
   async createUser(userEntity) {
     const user = new UserModel(userEntity);
-    return user.save();
+    return  user.save();
   }
 
   async findByUsername(username) {

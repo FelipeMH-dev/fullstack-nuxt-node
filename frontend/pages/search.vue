@@ -156,7 +156,7 @@ const saveBook = async () => {
 
   await addBook({
     ...selectedBook.value,
-    review: review.value, // puede ser ''
+    review: review.value, 
     rating: rating.value
   })
 
