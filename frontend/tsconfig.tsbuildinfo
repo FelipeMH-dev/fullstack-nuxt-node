@@ -1,0 +1,17 @@
+{
+  "root": [
+    "./eslint.config.mjs",
+    "./nuxt.config.ts",
+    "./app/app.vue",
+    "./services/api.ts",
+    "./services/auth.service.ts",
+    "./services/books.service.ts",
+    "./stores/auth.store.ts",
+    "./stores/books.store.ts",
+    "./types/book.interface.ts",
+    "./types/nuxt.d.ts",
+    "./types/user.interface.ts"
+  ],
+  "errors": true,
+  "version": "5.9.2"
+}
