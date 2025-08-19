@@ -16,7 +16,6 @@ body {
   line-height: 1.6;
 }
 
-// Layout general
 .layout {
   max-width: $max-width;
   margin: auto;
@@ -28,13 +27,13 @@ body {
 
   header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1rem;
+    padding: 1rem;
     border-bottom: 1px solid #e0e0e0;
     background-color: white;
     border-radius: $border-radius;
+    position: relative;
 
     h1 {
       color: $primary;
@@ -43,11 +42,43 @@ body {
       margin: 0;
     }
 
+    /* Botón hamburguesa */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+
+      span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background: $primary;
+        border-radius: 2px;
+        transition: 0.3s;
+
+        &.open:nth-child(1) {
+          transform: rotate(45deg) translate(5px, 5px);
+        }
+        &.open:nth-child(2) {
+          opacity: 0;
+        }
+        &.open:nth-child(3) {
+          transform: rotate(-45deg) translate(5px, -5px);
+        }
+      }
+    }
+
     nav {
       display: flex;
       align-items: center;
       gap: 1rem;
-
+      z-index: 1100;
       a,
       button {
         padding: 0.5rem 1rem;
@@ -77,21 +108,40 @@ body {
     padding: 2rem 0;
   }
 
-  @include respond(sm) {
+  /* Mobile */
+  @media (max-width: 600px) {
     header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
+      h1 {
+        margin-bottom: 0.5rem;
+      }
+
+      .burger {
+        display: flex;
+      }
 
       nav {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease;
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+
+        &.open {
+          max-height: 300px; // ajustable según número de links
+        }
 
         a,
         button {
-          flex: 1 1 auto;
+          width: 100%;
+          padding: 1rem;
+          border-top: 1px solid #eee;
           text-align: center;
         }
       }
