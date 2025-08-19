@@ -1,13 +1,14 @@
 // 🎨 Colores base
-$primary: #9a32afb0;
-$secondary: #bb66dc;
-$background: #0a0a0a;
-$text: #ffffff;
-$gray-light: #bdb8b8;
-$background-color: #1f0226;
-$background-color-card: #773487;
-$text-color: #1f2937;
-$border-radius: 6px;
+// 🎨 Colores base
+$primary: #A1887F;             // Marrón claro sobre oscuro, botones principales
+$secondary: #8D6E63;           // Marrón medio para acentos
+$accent: #FFD54F;               // Amarillo cálido para estrellas o highlights
+$background-color: #1E1B18;          // Fondo general oscuro
+$background-color-card: #2C2623; // Fondo de tarjetas más claro que el general
+$text: #EFEFEF;                 // Texto principal claro sobre fondo oscuro
+$text-secondary: #CFC0B3;       // Texto secundario (subtítulos, detalles)
+$gray-light: #666060;           // Bordes, placeholders, grises suaves
+$border-radius: 8px;            // Bordes redondeados   
 // 📏 Medidas
 $max-width: 1200px;
 $border-radius: 8px;
