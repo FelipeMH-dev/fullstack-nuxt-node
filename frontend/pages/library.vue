@@ -29,7 +29,7 @@
           </div>
 
           <h3>{{ book.title }}</h3>
-          <h3>Autor: {{ book.author }}</h3>
+          <h4>{{ book.author }}</h4>
           <p>{{ book.review }}</p>
           <div class="buttons">
             <button @click="openModal(book)">Editar</button>
