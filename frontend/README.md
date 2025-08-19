@@ -1,3 +1,9 @@
+
+## Agregar .env con las siguientes variables
+
+- NUXT_PUBLIC_API_BASE=http://localhost:4000/api
+- API_SECRET=your_api_secret_key
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
