@@ -30,7 +30,7 @@
 
           <h3>{{ book.title }}</h3>
           <h4>{{ book.author }}</h4>
-          <p>{{ book.review }}</p>
+          <p>{{ book.review ? book.review : "NO REVIEW"}}</p>
           <div class="buttons">
             <button @click="openModal(book)">Editar</button>
             <button @click="openDeleteModal(book)">Eliminar</button>
