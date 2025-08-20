@@ -44,6 +44,8 @@
       <!-- Modal de edición -->
       <div v-if="selectedBook" class="modal-backdrop" @click.self="closeModal">
         <div class="modal">
+          <!-- Botón cerrar -->
+          <button class="close-button" @click="closeModal">&times;</button>
           <h2>{{ selectedBook.title }}</h2>
           <p><strong>Autor:</strong> {{ selectedBook.author }}</p>
           <p><strong>Año:</strong> {{ selectedBook.year }}</p>
