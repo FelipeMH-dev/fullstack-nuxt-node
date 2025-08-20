@@ -314,6 +314,36 @@ body {
     }
   }
 
+  button .loading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  button .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #fff;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  button:disabled {
+    background-color: #666060;
+    cursor: not-allowed;
+    color: #ccc;
+  }
+
   /* Lista de resultados */
   ul {
     margin-top: 3rem;
@@ -710,7 +740,7 @@ body {
         font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
           sans-serif;
         max-height: 5rem;
-        width: 100%;;
+        width: 100%;
         overflow-y: auto;
         overflow-x: auto;
         box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);

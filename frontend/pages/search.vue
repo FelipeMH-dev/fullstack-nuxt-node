@@ -13,7 +13,12 @@
         </ul>
       </div>
 
-      <button @click="handleSearch">Buscar</button>
+      <button :disabled="isSearching" @click="handleSearch">
+        <span v-if="isSearching" class="loading">
+          <span class="spinner"></span> Buscando...
+        </span>
+        <span v-else>Buscar</span>
+      </button>
 
       <div v-if="books.length">
         <h2>Resultados</h2>
@@ -86,6 +91,8 @@ const selectedBook = ref<Book | null>(null)
 const review = ref('')
 const rating = ref<number | null>(null)
 const successMessage = ref('')
+const isSearching = ref(false);
+
 
 // Ref para detectar clicks fuera del input
 const wrapperRef = ref<HTMLElement | null>(null)
@@ -111,13 +118,24 @@ const handleClickOutside = (event: MouseEvent) => {
 
 // Función de búsqueda
 const handleSearch = async () => {
-  if (!searchText.value) return
+  if (!searchText.value) return;
 
-  books.value = await searchBooks(searchText.value)
-  searched.value = true
+  isSearching.value = true; // bloqueo al iniciar búsqueda
+  books.value = [];
+  searched.value = false;
 
-  updateLastSearches(searchText.value)
-  filterAutocomplete()
+  try {
+    const results = await searchBooks(searchText.value);
+    books.value = results;
+    searched.value = true;
+  } catch (err) {
+    console.error(err);
+  } finally {
+    isSearching.value = false; // desbloquea el botón cuando termina
+  }
+
+  updateLastSearches(searchText.value);
+  filterAutocomplete();
 }
 
 // Actualizar últimas búsquedas en localStorage (máximo 5)
