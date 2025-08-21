@@ -123,7 +123,7 @@ const loadLibrary = async () => {
   }
 }
 
-onMounted(() => loadLibrary())
+onMounted(() => {loadLibrary()})
 
 // Filtrado de libros
 const filteredBooks = computed(() => {

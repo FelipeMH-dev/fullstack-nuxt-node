@@ -634,7 +634,6 @@ body {
     }
   }
 }
-
 .library-page {
   max-width: $max-width;
   margin: auto;
@@ -698,13 +697,14 @@ body {
       padding: 1rem;
       border-radius: $border-radius;
       box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       min-width: 15rem;
       max-width: 15rem;
+      perspective: 1000px; // perspectiva 3D para hijos
 
       &:hover {
         transform: translateY(-4px);
-        box-shadow: 5px 5px 10px 5px rgba(252, 251, 251, 0.12);
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
       }
 
       img {
@@ -712,10 +712,12 @@ body {
         max-width: 80%;
         height: auto;
         border-radius: $border-radius;
-        transition: transform 0.2s;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transform-style: preserve-3d;
 
         &:hover {
-          transform: scale(1.1);
+          transform: scale(1.5) rotateX(10deg) rotateY(10deg);
+          box-shadow: 0 20px 25px rgba(255, 255, 255, 0.3);
         }
       }
 
@@ -737,8 +739,7 @@ body {
         color: $text;
         font-size: 1rem;
         margin-bottom: 1rem;
-        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-          sans-serif;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
         max-height: 5rem;
         width: 100%;
         overflow-y: auto;
@@ -877,7 +878,6 @@ body {
       }
     }
 
-    /* Botón cerrar */
     .close-button {
       position: absolute;
       top: 1rem;
@@ -1023,6 +1023,7 @@ body {
     }
   }
 }
+
 .auth-page {
   max-width: 400px;
   margin: 4rem auto;
