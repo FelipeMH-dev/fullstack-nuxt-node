@@ -361,11 +361,11 @@ body {
       min-width: 15rem;
       max-width: 15rem;
       border-radius: $border-radius;
-      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+      box-shadow: 0 2px 8px #ffffff0d;
       text-align: center;
       transition: transform 0.2s, box-shadow 0.2s;
       margin-top: 2rem;
-
+      perspective: 1000px;
       &:hover {
         transform: translateY(-4px);
         box-shadow: 5px 5px 10px 5px rgba(252, 251, 251, 0.12);
@@ -378,10 +378,11 @@ body {
         height: auto;
         border-radius: $border-radius;
         z-index: 2;
-        transition: transform 0.2s;
-
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transform-style: preserve-3d;
         &:hover {
-          transform: scale(1.4);
+          transform: scale(1.5) rotateX(10deg) rotateY(10deg);
+          
         }
       }
 
@@ -704,7 +705,7 @@ body {
 
       &:hover {
         transform: translateY(-4px);
-        box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+        box-shadow: 5px 5px 15px rgba(255, 255, 255, 0.2);
       }
 
       img {
