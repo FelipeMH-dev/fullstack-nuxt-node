@@ -38,7 +38,7 @@ class LoginUserUseCase {
 
     return {
       id: user._id,
-      usernamename: user.username,
+      username: user.username,
       email: user.email,
       token,
     };
